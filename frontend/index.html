@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدمة العملاء - البوت المصري</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; margin: 0; padding: 20px; display: flex; justify-content: center; height: 100vh; box-sizing: border-box; }
+        .container { display: flex; width: 100%; max-width: 1200px; gap: 20px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; height: 90vh; }
+        .sidebar { width: 300px; background: #2c3e50; color: white; padding: 20px; display: flex; flex-direction: column; }
+        .chat-area { flex: 1; display: flex; flex-direction: column; background: #ecf0f1; }
+        .messages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
+        .message { max-width: 70%; padding: 10px 15px; border-radius: 15px; line-height: 1.5; position: relative; }
+        .message.user { align-self: flex-start; background: #3498db; color: white; border-bottom-right-radius: 5px; }
+        .message.bot { align-self: flex-end; background: white; color: #333; border-bottom-left-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .input-area { padding: 20px; background: white; display: flex; gap: 10px; align-items: center; border-top: 1px solid #ddd; }
+        input[type="text"] { flex: 1; padding: 15px; border: 1px solid #ddd; border-radius: 30px; outline: none; font-size: 16px; }
+        button { padding: 12px 25px; border: none; border-radius: 30px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .send-btn { background: #2ecc71; color: white; }
+        .mic-btn { background: #e74c3c; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .stop-btn { background: #95a5a6; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 5px; }
+        .mic-btn.recording { animation: pulse 1.5s infinite; background: #c0392b; }
+        .badge { display: inline-block; padding: 5px 10px; font-size: 12px; border-radius: 15px; margin-top: 5px; background: rgba(0,0,0,0.1); }
+        .stat-box { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 10px; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>🤖 المساعد الذكي</h2>
+            <div class="stat-box">
+                <small>اللهجة المكتشفة</small>
+                <h3 id="dialect-display">---</h3>
+            </div>
+            <div class="stat-box">
+                <small>الحالة الشعورية</small>
+                <h3 id="emotion-display">---</h3>
+            </div>
+            <div style="margin-top: auto;">
+                <p><small>Session ID:</small> <span id="session-id">Loading...</span></p>
+            </div>
+        </div>
+        
+        <div class="chat-area">
+            <div class="messages" id="messages">
+                <div class="message bot">
+                    أهلاً بك يا فندم! أنا هنا عشان أساعدك. قول مشكلتك وأنا معاك.<br>
+                    <small style="color: #7f8c8d; font-size: 0.8em;">(جرب تتكلم بالعامية المصرية)</small>
+                </div>
+            </div>
+            <div class="input-area">
+                <button class="mic-btn" id="micBtn">🎤</button>
+                <button class="stop-btn" onclick="stopSpeaking()" title="إيقاف القراءة">🔇</button>
+                <input type="text" id="userInput" placeholder="اكتب رسالتك هنا..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <button class="send-btn" onclick="sendMessage()">إرسال ➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let sessionId = localStorage.getItem('chat_session_id') || Math.random().toString(36).substring(7);
+        localStorage.setItem('chat_session_id', sessionId);
+        document.getElementById('session-id').textContent = sessionId;
+        let currentAudio = null;
+
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            addMessage(text, 'user');
+            input.value = '';
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text, session_id: sessionId })
+                });
+                const data = await response.json();
+                
+                addMessage(data.reply, 'bot', data.detected_dialect);
+                document.getElementById('dialect-display').textContent = data.detected_dialect;
+                document.getElementById('emotion-display').textContent = data.emotion;
+                
+                // Play Audio from Backend if available
+                if (data.audio_base64) {
+                    playAudioBase64(data.audio_base64);
+                }
+
+            } catch (error) {
+                addMessage("عذراً، حدث خطأ في الاتصال بالسيرفر.", 'bot');
+                console.error(error);
+            }
+        }
+
+        function addMessage(text, sender, dialect = null) {
+            const div = document.createElement('div');
+            div.className = `message ${sender}`;
+            let html = text;
+            if (dialect && sender === 'bot') {
+                html += `<br><span class="badge">لهجة: ${dialect}</span>`;
+            }
+            div.innerHTML = html;
+            document.getElementById('messages').appendChild(div);
+            document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+        }
+
+        function playAudioBase64(base64String) {
+            stopSpeaking();
+            currentAudio = new Audio("data:audio/mp3;base64," + base64String);
+            currentAudio.play();
+        }
+
+        function stopSpeaking() {
+            // Stop HTML5 Audio
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            // Stop Browser TTS (if any running)
+            if ('speechSynthesis' in window) {
+                 window.speechSynthesis.cancel();
+            }
+        }
+
+        // Mic setup (Requires HTTPS or localhost)
+        const micBtn = document.getElementById('micBtn');
+        let mediaRecorder;
+        let audioChunks = [];
+
+        micBtn.addEventListener('mousedown', startRecording);
+        micBtn.addEventListener('mouseup', stopRecording);
+
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+                
+                mediaRecorder.ondataavailable = event => audioChunks.push(event.data);
+                mediaRecorder.onstop = sendAudio;
+                
+                mediaRecorder.start();
+                micBtn.classList.add('recording');
+            } catch (err) {
+                alert("لا يمكن الوصول للميكروفون");
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                micBtn.classList.remove('recording');
+            }
+        }
+
+        async function sendAudio() {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+            const formData = new FormData();
+            formData.append("audio", audioBlob, "recording.webm");
+
+            addMessage("🎤 جاري تحويل الصـوت...", 'user');
+
+            try {
+                const res = await fetch('/api/transcribe', { method: 'POST', body: formData });
+                const data = await res.json();
+                
+                // Remove the temp message and send real text
+                document.querySelector('.message.user:last-child').remove();
+                
+                if (!res.ok) {
+                    let errorMsg = data.detail || "❌ فشل تحويل الصوت، حاول تاني. تأكد إن المايك شغال وتكلمت بوضوح.";
+                    addMessage(errorMsg, 'bot');
+                    return;
+                }
+
+                if (data.text) {
+                    addMessage(data.text, 'user');
+                    // Auto send text after transcription
+                    const input = document.getElementById('userInput');
+                    input.value = data.text;
+                    sendMessage();
+                }
+            } catch (err) {
+                // Remove the temp message and show an error
+                document.querySelector('.message.user:last-child').remove();
+                addMessage("❌ فشل تحويل الصوت، حاول تاني", 'bot');
+                console.error(err);
+            }
+        }
+    </script>
+</body>
+</html>

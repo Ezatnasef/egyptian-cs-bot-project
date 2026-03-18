@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحليلات بوت خدمة العملاء المصري</title>
+    <!-- Tailwind CSS (via CDN for local ease) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 p-6">
+
+    <div class="max-w-7xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-indigo-900">📊 تحليلات نظام خدمة العملاء الذكي</h1>
+            <a href="/" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors">
+                العودة للواجهة الرئيسية
+            </a>
+        </div>
+
+        <!-- Top Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="glass-card rounded-xl p-6 text-center">
+                <h3 class="text-gray-500 text-sm font-semibold mb-2">إجمالي الرسائل</h3>
+                <p id="totalMessages" class="text-4xl font-bold text-indigo-600">0</p>
+            </div>
+            <div class="glass-card rounded-xl p-6 text-center">
+                <h3 class="text-gray-500 text-sm font-semibold mb-2">الجلسات النشطة</h3>
+                <p id="activeSessions" class="text-4xl font-bold text-green-600">0</p>
+            </div>
+            <div class="glass-card rounded-xl p-6 text-center">
+                <h3 class="text-gray-500 text-sm font-semibold mb-2">متوسط سرعة الرد</h3>
+                <p id="avgResponseTime" class="text-4xl font-bold text-blue-600">0<span class="text-lg">ms</span></p>
+            </div>
+            <div class="glass-card rounded-xl p-6 text-center">
+                <h3 class="text-gray-500 text-sm font-semibold mb-2">حجم بيانات التدريب</h3>
+                <p id="datasetSize" class="text-4xl font-bold text-purple-600">0</p>
+            </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+
+            <!-- Dialects Chart -->
+            <div class="glass-card rounded-xl p-6">
+                <h2 class="text-xl font-bold mb-4 text-center">توزيع اللهجات</h2>
+                <div class="relative h-64">
+                    <canvas id="dialectsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Emotions Chart -->
+            <div class="glass-card rounded-xl p-6">
+                <h2 class="text-xl font-bold mb-4 text-center">تحليل المشاعر</h2>
+                <div class="relative h-64">
+                    <canvas id="emotionsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Domains Chart -->
+            <div class="glass-card rounded-xl p-6">
+                <h2 class="text-xl font-bold mb-4 text-center">أقسام الدعم الفني</h2>
+                <div class="relative h-64">
+                    <canvas id="domainsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Hourly Activity Chart -->
+            <div class="glass-card rounded-xl p-6">
+                <h2 class="text-xl font-bold mb-4 text-center">النشاط على مدار اليوم</h2>
+                <div class="relative h-64">
+                    <canvas id="hourlyChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set Chart.js Default Font
+        Chart.defaults.font.family = "'Cairo', sans-serif";
+
+        let charts = {};
+
+        async function fetchAnalytics() {
+            try {
+                const response = await fetch('/api/analytics');
+                const data = await response.json();
+                updateDashboard(data);
+            } catch (error) {
+                console.error("Error fetching analytics:", error);
+            }
+        }
+
+        function updateDashboard(data) {
+            // Update Top Cards
+            document.getElementById('totalMessages').textContent = data.total_messages || 0;
+            document.getElementById('activeSessions').textContent = data.active_sessions || 0;
+            document.getElementById('avgResponseTime').innerHTML = `${data.avg_response_time_ms || 0}<span class="text-lg">ms</span>`;
+            document.getElementById('datasetSize').textContent = data.dataset_size || 0;
+
+            // Prepare Data formatting
+            const getLabelsAndData = (obj) => ({
+                labels: Object.keys(obj || {}),
+                data: Object.values(obj || {})
+            });
+
+            const dialects = getLabelsAndData(data.dialect_distribution);
+            const emotions = getLabelsAndData(data.emotion_distribution);
+            const domains = getLabelsAndData(data.domain_distribution);
+            const hourly = getLabelsAndData(data.hourly_activity);
+
+            // Render Charts
+            renderChart('dialectsChart', 'pie', dialects, ['#4F46E5', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899']);
+            renderChart('emotionsChart', 'doughnut', emotions, ['#10B981', '#EF4444', '#F59E0B', '#6B7280']);
+            renderChart('domainsChart', 'bar', domains, '#4F46E5');
+            renderChart('hourlyChart', 'line', hourly, '#8B5CF6');
+        }
+
+        function renderChart(canvasId, type, chartData, colors) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+
+            if (charts[canvasId]) {
+                charts[canvasId].destroy(); // Destroy old chart before re-rendering
+            }
+
+            const config = {
+                type: type,
+                data: {
+                    labels: chartData.labels,
+                    datasets: [{
+                        label: 'العدد',
+                        data: chartData.data,
+                        backgroundColor: colors,
+                        borderColor: type === 'line' ? colors : '#fff',
+                        borderWidth: type === 'line' ? 2 : 1,
+                        fill: type === 'line' ? true : false,
+                        tension: 0.4 // curve for lines
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: ['pie', 'doughnut'].includes(type),
+                            position: 'bottom',
+                            labels: { font: { family: "'Cairo', sans-serif" } }
+                        }
+                    }
+                }
+            };
+
+            charts[canvasId] = new Chart(ctx, config);
+        }
+
+        // Fetch initially and then every 10 seconds
+        fetchAnalytics();
+        setInterval(fetchAnalytics, 10000);
+    </script>
+</body>
+
+</html>

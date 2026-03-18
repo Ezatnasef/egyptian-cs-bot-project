@@ -1,0 +1,17 @@
+.env
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+.vscode/
+.idea/
+models/
+outputs/
+*.webm
+*.wav
+*.mp3
+dataset/stt_dataset.json
+archive/
