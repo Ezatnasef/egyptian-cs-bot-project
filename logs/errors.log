@@ -1,0 +1,231 @@
+[2026-03-23 11:14:57] [ERROR] backend.exceptions - Unhandled Exception: Exception | Message: parameter `request` must be an instance of starlette.requests.Request | Path: /api/chat
+Traceback (most recent call last):
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 324, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\slowapi\extension.py", line 725, in async_wrapper
+    raise Exception(
+        "parameter `request` must be an instance of starlette.requests.Request"
+    )
+Exception: parameter `request` must be an instance of starlette.requests.Request
+[2026-03-23 11:16:13] [ERROR] backend.exceptions - Unhandled Exception: Exception | Message: parameter `request` must be an instance of starlette.requests.Request | Path: /api/chat
+Traceback (most recent call last):
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 324, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\slowapi\extension.py", line 725, in async_wrapper
+    raise Exception(
+        "parameter `request` must be an instance of starlette.requests.Request"
+    )
+Exception: parameter `request` must be an instance of starlette.requests.Request
+[2026-03-23 11:16:15] [ERROR] backend.exceptions - Unhandled Exception: Exception | Message: parameter `request` must be an instance of starlette.requests.Request | Path: /api/chat
+Traceback (most recent call last):
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 324, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\slowapi\extension.py", line 725, in async_wrapper
+    raise Exception(
+        "parameter `request` must be an instance of starlette.requests.Request"
+    )
+Exception: parameter `request` must be an instance of starlette.requests.Request
+[2026-03-23 11:17:18] [ERROR] backend.exceptions - Unhandled Exception: Exception | Message: parameter `request` must be an instance of starlette.requests.Request | Path: /api/chat
+Traceback (most recent call last):
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 324, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\slowapi\extension.py", line 725, in async_wrapper
+    raise Exception(
+        "parameter `request` must be an instance of starlette.requests.Request"
+    )
+Exception: parameter `request` must be an instance of starlette.requests.Request
+[2026-03-24 09:45:35] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 09:45:35] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 09:45:39] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 09:45:39] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 09:45:42] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 09:45:42] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 09:45:47] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 09:45:47] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 09:46:55] [ERROR] __main__ - ❌ Google STT Failed: Audio file could not be read as PCM WAV, AIFF/AIFF-C, or Native FLAC; check if file is corrupted or in another format
+[2026-03-24 09:46:55] [ERROR] __main__ - Audio error: فشل في تحويل الصوت. حاول تحدث بوضوح أكبر
+[2026-03-24 09:46:55] [ERROR] backend.exceptions - BotException: AUDIO_ERROR | Message: فشل في تحويل الصوت. حاول تحدث بوضوح أكبر | Path: /api/transcribe | Details: Audio processing failed
+[2026-03-24 10:31:41] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:31:41] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:31:45] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:31:45] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:32:32] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:32:32] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:35:03] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:35:03] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:35:08] [ERROR] __main__ - ❌ Google STT Failed: Audio file could not be read as PCM WAV, AIFF/AIFF-C, or Native FLAC; check if file is corrupted or in another format
+[2026-03-24 10:35:08] [ERROR] __main__ - Audio error: فشل في تحويل الصوت. حاول تحدث بوضوح أكبر
+[2026-03-24 10:35:08] [ERROR] backend.exceptions - BotException: AUDIO_ERROR | Message: فشل في تحويل الصوت. حاول تحدث بوضوح أكبر | Path: /api/transcribe | Details: Audio processing failed
+[2026-03-24 10:43:49] [ERROR] backend.app_v5 - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:43:49] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: LLM
+[2026-03-24 10:45:10] [ERROR] backend.app_v5 - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:45:10] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: LLM
+[2026-03-24 10:49:14] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:49:14] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:49:17] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:49:17] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:53:24] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:53:24] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:53:51] [ERROR] backend.app_v5 - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:53:51] [ERROR] backend.app_v5 - Handled BotException in chat: API_ERROR الخدمة بطيئة حالياً، حاول لاحقاً
+[2026-03-24 10:54:25] [ERROR] backend.app_v5 - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:54:25] [ERROR] backend.app_v5 - Handled BotException in chat: API_ERROR الخدمة بطيئة حالياً، حاول لاحقاً
+[2026-03-24 10:56:19] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:56:19] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:59:00] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:59:00] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:59:26] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:59:26] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 11:04:09] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 11:04:09] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 11:10:02] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 11:10:02] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 15:08:58] [ERROR] __main__ - Transcribe error: name 'client' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Nasef\Desktop\egyptian-cs-bot-project\backend\app_v5.py", line 336, in transcribe_audio
+    if client and OPENAI_API_KEY:
+       ^^^^^^
+NameError: name 'client' is not defined
+[2026-03-24 15:08:58] [ERROR] backend.exceptions - BotException: TRANSCRIBE_ERROR | Message: فشل في معالجة الملف الصوتي | Path: /api/transcribe | Details: 
+[2026-03-24 15:09:00] [ERROR] __main__ - Transcribe error: name 'client' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Nasef\Desktop\egyptian-cs-bot-project\backend\app_v5.py", line 336, in transcribe_audio
+    if client and OPENAI_API_KEY:
+       ^^^^^^
+NameError: name 'client' is not defined

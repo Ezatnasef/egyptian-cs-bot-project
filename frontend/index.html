@@ -13,16 +13,19 @@
         .message { max-width: 70%; padding: 10px 15px; border-radius: 15px; line-height: 1.5; position: relative; }
         .message.user { align-self: flex-start; background: #3498db; color: white; border-bottom-right-radius: 5px; }
         .message.bot { align-self: flex-end; background: white; color: #333; border-bottom-left-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .typing { font-style: italic; color: #7f8c8d; font-size: 0.9em; display: none; align-self: flex-end; background: white; padding: 10px 15px; border-radius: 15px; margin-bottom: 10px; }
         .input-area { padding: 20px; background: white; display: flex; gap: 10px; align-items: center; border-top: 1px solid #ddd; }
         input[type="text"] { flex: 1; padding: 15px; border: 1px solid #ddd; border-radius: 30px; outline: none; font-size: 16px; }
         button { padding: 12px 25px; border: none; border-radius: 30px; cursor: pointer; font-weight: bold; transition: 0.2s; }
         .send-btn { background: #2ecc71; color: white; }
-        .mic-btn { background: #e74c3c; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .mic-btn { background: #e74c3c; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: 0.3s; position: relative; }
+        .mic-btn:hover { transform: scale(1.1); }
+        .mic-btn.recording { animation: pulse 1.5s infinite; background: #c0392b; box-shadow: 0 0 15px rgba(231, 76, 60, 0.5); }
         .stop-btn { background: #95a5a6; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-right: 5px; }
-        .mic-btn.recording { animation: pulse 1.5s infinite; background: #c0392b; }
         .badge { display: inline-block; padding: 5px 10px; font-size: 12px; border-radius: 15px; margin-top: 5px; background: rgba(0,0,0,0.1); }
         .stat-box { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 10px; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .recording-text { position: absolute; top: -30px; background: #e74c3c; color: white; padding: 2px 10px; border-radius: 10px; font-size: 10px; display: none; }
     </style>
 </head>
 <body>
@@ -48,9 +51,13 @@
                     أهلاً بك يا فندم! أنا هنا عشان أساعدك. قول مشكلتك وأنا معاك.<br>
                     <small style="color: #7f8c8d; font-size: 0.8em;">(جرب تتكلم بالعامية المصرية)</small>
                 </div>
+                <div class="typing" id="typing-indicator">جاري الكتابة...</div>
             </div>
             <div class="input-area">
-                <button class="mic-btn" id="micBtn">🎤</button>
+                <button class="mic-btn" id="micBtn">
+                    🎤
+                    <span class="recording-text" id="recording-text">جاري التسجيل...</span>
+                </button>
                 <button class="stop-btn" onclick="stopSpeaking()" title="إيقاف القراءة">🔇</button>
                 <input type="text" id="userInput" placeholder="اكتب رسالتك هنا..." onkeypress="if(event.key==='Enter') sendMessage()">
                 <button class="send-btn" onclick="sendMessage()">إرسال ➤</button>
@@ -71,18 +78,50 @@
 
             addMessage(text, 'user');
             input.value = '';
-
+            
+            showTyping(true);
             try {
-                const response = await fetch('/api/chat', {
+                const response = await fetch('http://localhost:8000/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: text, session_id: sessionId })
                 });
-                const data = await response.json();
+                let data = null;
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    console.error('JSON parse error', e);
+                    data = null;
+                }
                 
-                addMessage(data.reply, 'bot', data.detected_dialect);
-                document.getElementById('dialect-display').textContent = data.detected_dialect;
-                document.getElementById('emotion-display').textContent = data.emotion;
+                showTyping(false);
+
+                if (!response.ok) {
+                    const errorMsg = (data && data.error && data.error.message)
+                        ? data.error.message
+                        : '❌ حدث خطأ في السيرفر. حاول تاني.';
+                    addMessage(errorMsg, 'bot');
+                    return;
+                }
+                
+                // ✅ التحقق من البيانات المرجعة - حل مشكلة undefined / null / غير كامل
+                const unsafeReply = data && typeof data.reply !== 'undefined' ? data.reply : null;
+                const safeReply = (unsafeReply && typeof unsafeReply === 'string' && unsafeReply.trim() && !['undefined','null','none','nan'].includes(unsafeReply.trim().toLowerCase()))
+                    ? unsafeReply.trim()
+                    : 'أنا آسف، لم أفهم طلبك تماماً، ممكن تبعت الجملة تاني؟';
+                const botReply = safeReply;
+
+                const detectedDialect = data && data.detected_dialect ? data.detected_dialect : '--';
+                const emotion = data && data.emotion ? data.emotion : 'محايد';
+
+                addMessage(botReply, 'bot', detectedDialect);
+                document.getElementById('dialect-display').textContent = detectedDialect;
+                document.getElementById('emotion-display').textContent = emotion;
+
+                // Log when bad backend reply gets fixed to avoid undefined
+                if (!data || !data.reply || ['undefined','null','none','nan'].includes(String(data.reply).trim().toLowerCase())) {
+                    console.warn('Fallback bot reply used, check backend for uninitialized response:', data);
+                }
                 
                 // Play Audio from Backend if available
                 if (data.audio_base64) {
@@ -90,6 +129,7 @@
                 }
 
             } catch (error) {
+                showTyping(false);
                 addMessage("عذراً، حدث خطأ في الاتصال بالسيرفر.", 'bot');
                 console.error(error);
             }
@@ -108,9 +148,26 @@
         }
 
         function playAudioBase64(base64String) {
-            stopSpeaking();
-            currentAudio = new Audio("data:audio/mp3;base64," + base64String);
-            currentAudio.play();
+            try {
+                stopSpeaking();
+                // جرب صيغ مختلفة - webm أولاً (الأفضل للجودة)
+                let audioUrl = base64String;
+                if (!audioUrl.startsWith('data:')) {
+                    audioUrl = 'data:audio/webm;codecs=opus;base64,' + base64String;
+                }
+                currentAudio = new Audio(audioUrl);
+                currentAudio.play().catch(e => console.error('Audio error:', e));
+            } catch (error) {
+                console.error('Audio setup error:', error);
+            }
+        }
+
+        function showTyping(show) {
+            const indicator = document.getElementById('typing-indicator');
+            indicator.style.display = show ? 'block' : 'none';
+            if (show) {
+                document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+            }
         }
 
         function stopSpeaking() {
@@ -135,8 +192,24 @@
 
         async function startRecording() {
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                mediaRecorder = new MediaRecorder(stream);
+                // تحسين إعدادات الصوت لجودة أفضل
+                const constraints = {
+                    audio: {
+                        sampleRate: 44100,        // معدل عينة عالي
+                        channelCount: 1,          // قناة واحدة (mono)
+                        volume: 1.0,              // حجم صوت كامل
+                        echoCancellation: true,   // إلغاء الصدى
+                        noiseSuppression: true,   // تقليل الضوضاء
+                        autoGainControl: true,    // التحكم التلقائي في الصوت
+                        sampleSize: 16            // حجم العينة
+                    }
+                };
+
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                mediaRecorder = new MediaRecorder(stream, {
+                    mimeType: 'audio/webm;codecs=opus',  // جودة أفضل
+                    audioBitsPerSecond: 128000           // معدل بت أعلى
+                });
                 audioChunks = [];
                 
                 mediaRecorder.ondataavailable = event => audioChunks.push(event.data);
@@ -144,8 +217,10 @@
                 
                 mediaRecorder.start();
                 micBtn.classList.add('recording');
+                document.getElementById('recording-text').style.display = 'block';
             } catch (err) {
-                alert("لا يمكن الوصول للميكروفون");
+                console.error('Audio recording error:', err);
+                alert("لا يمكن الوصول للميكروفون. تأكد من السماح بالوصول للميكروفون في المتصفح.");
             }
         }
 
@@ -153,25 +228,42 @@
             if (mediaRecorder && mediaRecorder.state !== 'inactive') {
                 mediaRecorder.stop();
                 micBtn.classList.remove('recording');
+                document.getElementById('recording-text').style.display = 'none';
             }
         }
 
         async function sendAudio() {
-            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+            // تحسين معالجة الصوت قبل الإرسال
+            const audioBlob = new Blob(audioChunks, { 
+                type: 'audio/webm;codecs=opus'  // جودة أعلى مع ضغط أفضل
+            });
+            
+            // التحقق من حجم الملف
+            const fileSizeMB = audioBlob.size / (1024 * 1024);
+            if (fileSizeMB > 25) {  // حد أقصى 25MB
+                addMessage("❌ الملف الصوتي كبير جداً. حاول تسجيل رسالة أقصر.", 'bot');
+                return;
+            }
+            
             const formData = new FormData();
             formData.append("audio", audioBlob, "recording.webm");
 
-            addMessage("🎤 جاري تحويل الصـوت...", 'user');
+            addMessage("🎤 جاري تحويل الصـوت... (جودة محسنة)", 'user');
 
             try {
-                const res = await fetch('/api/transcribe', { method: 'POST', body: formData });
+                const res = await fetch('http://localhost:8000/api/transcribe', { 
+                    method: 'POST', 
+                    body: formData,
+                    // إضافة timeout للطلبات الكبيرة
+                    signal: AbortSignal.timeout(30000)  // 30 ثانية
+                });
                 const data = await res.json();
                 
                 // Remove the temp message and send real text
                 document.querySelector('.message.user:last-child').remove();
                 
                 if (!res.ok) {
-                    let errorMsg = data.detail || "❌ فشل تحويل الصوت، حاول تاني. تأكد إن المايك شغال وتكلمت بوضوح.";
+                    let errorMsg = data.detail || "❌ فشل تحويل الصوت، حاول تاني. تأكد إن المايك شغال وتكلمت بوضوح وببطء.";
                     addMessage(errorMsg, 'bot');
                     return;
                 }

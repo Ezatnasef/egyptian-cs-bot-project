@@ -1,5 +1,5 @@
 @echo off
-echo 🚀 Launching Egyptian CS Bot V4 (API Driven)...
+echo 🚀 Launching Egyptian CS Bot V4 (Stable Mode)...
 cd backend
-python -m uvicorn app:app --port 8000
+python app.py
 pause

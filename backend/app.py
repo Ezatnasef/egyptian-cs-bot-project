@@ -26,17 +26,41 @@ from dotenv import load_dotenv
 import speech_recognition as sr
 from openai import AsyncOpenAI
 
-load_dotenv()
-api_key = os.getenv("OPENAI_API_KEY")
-is_groq = api_key and api_key.startswith("gsk_")
+# Load .env from project root
+env_path = Path(__file__).parent.parent / ".env"
+load_dotenv(dotenv_path=env_path)
+print(f"Loading .env from: {env_path.absolute()} (exists: {env_path.exists()})")
+
+# Try GROQ first, then OpenAI fallback
+api_key = os.getenv("GROQ_API_KEY") or os.getenv("OPENAI_API_KEY")
+if not api_key:
+    print("❌ ERROR: No API key found! Set GROQ_API_KEY or OPENAI_API_KEY in .env file")
+    raise ValueError("API key required. Please set GROQ_API_KEY or OPENAI_API_KEY in .env file")
+else:
+    print(f"✅ API Key found (starts with: {api_key[:10]}...)")
+
+is_groq = api_key.startswith("gsk_")
 
 if is_groq:
+    print("🚀 Using Groq API Configuration")
     client = AsyncOpenAI(api_key=api_key, base_url="https://api.groq.com/openai/v1")
 else:
+    print("🤖 Using OpenAI API Configuration")
     client = AsyncOpenAI(api_key=api_key)
 # --- Cleaned for V4 (API Driven) ---
 
 app = FastAPI(title="Egyptian CS Bot - V4.0 API Edition", version="4.0.0")
+
+# --- Startup Logging ---
+@app.on_event("startup")
+async def startup_event():
+    print(f"Server starting up V4.0...")
+    print(f"Dataset Path: {DATASET_PATH.absolute()}")
+    print(f"Dataset exists: {DATASET_PATH.exists()}")
+    frontend_path = Path(__file__).parent.parent / "frontend" / "index.html"
+    print(f"Frontend index path: {frontend_path.absolute()}")
+    print(f"Frontend exists: {frontend_path.exists()}")
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -231,8 +255,15 @@ def summarize_history(history: List[dict]) -> str:
 # --- Endpoints ---
 @app.get("/")
 async def serve_frontend():
-    frontend_path = Path(__file__).parent.parent / "frontend" / "index.html"
+    frontend_path = (Path(__file__).parent.parent / "frontend" / "index.html").absolute()
+    print(f"Serving frontend from: {frontend_path}")
+    if not frontend_path.exists():
+        return JSONResponse({"error": f"File not found at {frontend_path}"}, status_code=404)
     return FileResponse(frontend_path)
+
+@app.get("/test")
+async def test_route():
+    return {"message": "Server is UP and running!"}
 
 @app.get("/analytics")
 async def serve_analytics():
@@ -256,11 +287,10 @@ def get_dataset_size() -> int:
         return 0
 
 
-async def generate_tts_base64_async(text: str, voice: str = "ar-EG-ShakirNeural") -> str:
-    """Generate TTS using Microsoft Edge TTS (free, no API key needed, high quality Arabic)"""
+async def generate_tts_base64_async(text: str, voice: str = "ar-EG-SalmaNeural", rate: str = "-10%", pitch: str = "+0Hz") -> str:
+    """Generate TTS using Microsoft Edge TTS with SSML support for realism"""
     try:
-        # We need to run edge_tts and catch output as bytes
-        communicate = edge_tts.Communicate(text, voice)
+        communicate = edge_tts.Communicate(text, voice, rate=rate, pitch=pitch)
         audio_data = b""
         async for chunk in communicate.stream():
             if chunk["type"] == "audio":
@@ -290,9 +320,10 @@ async def transcribe_audio(audio: UploadFile = File(...)):
                     transcript_resp = await client.audio.transcriptions.create(
                         model="whisper-large-v3-turbo" if is_groq else "whisper-1", 
                         file=audio_file,
-                        language="ar"
+                        language="ar",
+                        prompt="محادثة خدمة عملاء مصرية احترافية. العميل يسأل عن باقات الإنترنت، الرصيد، الطلبات، أو المساعدة التقنية. اللهجات: قاهري، إسكندراني، صعيدي."
                     )
-                transcription = transcript_resp.text
+                transcription = transcript_resp.text.strip()
                 print(f"✅ OpenAI STT Success: {transcription}")
             except Exception as e:
                 print(f"⚠️ OpenAI STT failed, falling back to Google: {e}")
@@ -315,6 +346,19 @@ async def transcribe_audio(audio: UploadFile = File(...)):
             except Exception as e:
                 print(f"❌ Google STT Failed: {e}")
                 raise HTTPException(status_code=500, detail="فشل في تحويل الصوت. حاول تحدث بوضوح أكبر.")
+
+        # Filter known Whisper hallucinations (YouTube tropes in Arabic)
+        hallucinations = ["اشترك في القنا", "اشتركوا في القناة", "شكراً للمشاهدة", "لا تنسوا الاشتراك", "قدّم لكم هذا الفيديو", "متابعينا الأعزاء"]
+        for h in hallucinations:
+            if h in transcription:
+                print(f"🛑 Filtered Whisper hallucination: {h}")
+                transcription = transcription.replace(h, "").strip()
+
+        # If transcription is empty or just generic hallucination residuals, use fallback or original audio context
+        if not transcription or len(transcription) < 2:
+             # If it was very short, maybe it literally just said 'hi' but got filtered? 
+             # For now, let's keep it empty to trigger 'try again' if it's truly silent
+             pass
 
         os.unlink(tmp_path)
         return {"text": transcription}
@@ -347,36 +391,34 @@ async def chat(request: ChatRequest):
         # Keep only the last 4 messages plus the summary context
         session["history"] = session["history"][-4:]
 
-    # Generate response using OpenAI API
-    if os.getenv("OPENAI_API_KEY"):
-        try:
-            system_msg = f"""أنت موظف خدمة عملاء مصري محترف.
-التعليمات:
-1. رد دائماً بلهجة العميل: {dialect_name}
-2. حافظ على نبرة تتناسب مع مشاعره: {emotion}
-3. كن مختصراً، عملياً، وودوداً.
-4. استخدم كلمات سرية تدل على لهجته."""
-            
-            messages = [{"role": "system", "content": system_msg}]
-            # Add context
-            for m in session["history"][-4:]:
-                messages.append(m)
-            # Add current
-            messages.append({"role": "user", "content": request.message})
+    # Generate response using API only
+    try:
+        system_msg = f"""أنت موظف خدمة عملاء مصري محترف جداً وودود.
+التعليمات الصارمة:
+1. رد دائماً بلهجة مصرية عامية طبيعية جداً (مثل كلام الناس في الشارع) تتناسب مع لهجة العميل: {dialect_name}.
+2. كن "بني آدم" في ردودك؛ استخدم عبارات ودودة مثل "من عيوني"، "تحت أمرك يا فندم"، "متشغلش بالك خالص".
+3. لا تخمن اسم العميل أبداً ولا تناديه باسم (مثل عثمان أو عتمان) إلا إذا أخبرك هو باسمه. استخدم "يا فندم" أو "يا باشا".
+4. إذا قال العميل "عامل ايه" أو "اخبارك"، رد بطريقة بشرية ودودة: "الحمد لله زي الفل، طمني أنت عامل إيه؟ إيه الأخبار؟"
+5. حافظ على نبرة تتناسب مع مشاعره: {emotion}.
+6. كن مختصراً، عملياً، ومفيداً جداً وبدون تكلف."""
+        
+        messages = [{"role": "system", "content": system_msg}]
+        # Add context
+        for m in session["history"][-4:]:
+            messages.append(m)
+        # Add current
+        messages.append({"role": "user", "content": request.message})
 
-            response = await client.chat.completions.create(
-                model="llama-3.3-70b-versatile" if is_groq else "gpt-4o-mini",
-                messages=messages,
-                max_tokens=150,
-                temperature=0.7
-            )
-            reply = response.choices[0].message.content.strip()
-        except Exception as e:
-             print(f"LLM Error: {e}")
-             reply = get_demo_reply(request.message, dialect_id)
-    else:
-        # Fallback to Dataset Matching (Demo Mode)
-        reply = get_demo_reply(request.message, dialect_id)
+        response = await client.chat.completions.create(
+            model="llama-3.3-70b-versatile" if is_groq else "gpt-4o-mini",
+            messages=messages,
+            max_tokens=200,
+            temperature=0.3
+        )
+        reply = response.choices[0].message.content.strip()
+    except Exception as e:
+        print(f"❌ LLM API Error: {e}")
+        raise HTTPException(status_code=500, detail="فشل في الاتصال بخدمة الذكاء الاصطناعي. حاول لاحقاً.")
 
     # Save to session history
     session["history"].append({"role": "user", "content": request.message})
@@ -392,8 +434,25 @@ async def chat(request: ChatRequest):
     analytics_data["avg_response_time"].append(response_time)
     analytics_data["conversations_by_day"][datetime.now().strftime("%Y-%m-%d")] += 1
 
+    # Clean text for TTS (remove emojis and extra symbols)
+    import re
+    clean_reply = re.sub(r'[^\w\s\u0621-\u064A.؟،!]', '', reply)
+    # Add slight pauses for better human-like rhythm
+    clean_reply = clean_reply.replace('،', '... ').replace('؟', '؟ ... ').replace('.', '. ... ')
+    
+    # Map emotions to voice parameters (SSML Tuning)
+    voice_params = {
+        "neutral": {"rate": "-5%", "pitch": "+0Hz"},
+        "angry": {"rate": "-15%", "pitch": "-3Hz"},  # Lower, slower, firmer
+        "worried": {"rate": "-12%", "pitch": "+2Hz"}, # Shaky, slightly higher
+        "frustrated": {"rate": "-20%", "pitch": "-2Hz"}, # Very slow, annoyed
+        "confused": {"rate": "-8%", "pitch": "+3Hz"}, # Questioning tone
+        "happy": {"rate": "+0%", "pitch": "+5Hz"}, # Fast, cheerful
+    }
+    params = voice_params.get(emotion, voice_params["neutral"])
+
     # Generate Audio (TTS)
-    audio_b64 = await generate_tts_base64_async(reply)
+    audio_b64 = await generate_tts_base64_async(clean_reply, rate=params["rate"], pitch=params["pitch"])
 
     return ChatResponse(
         reply=reply,
@@ -483,3 +542,8 @@ async def clear_session(data: dict):
 frontend_dir = Path(__file__).parent.parent / "frontend"
 if frontend_dir.exists():
     app.mount("/static", StaticFiles(directory=str(frontend_dir)), name="static")
+
+if __name__ == "__main__":
+    import uvicorn
+    print("🚀 Starting Server on http://0.0.0.0:8001")
+    uvicorn.run(app, host="0.0.0.0", port=8001)

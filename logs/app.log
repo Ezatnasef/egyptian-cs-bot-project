@@ -1,0 +1,554 @@
+[2026-03-23 11:12:06] [INFO] backend.app_v5 - 🚀 Using Groq API Configuration
+[2026-03-23 11:13:26] [INFO] backend.app_v5 - 🚀 Using Groq API Configuration
+[2026-03-23 11:13:26] [INFO] backend.app_v5 - 🚀 Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-23 11:13:26] [INFO] backend.app_v5 - Environment: development | Debug: True
+[2026-03-23 11:13:26] [INFO] backend.app_v5 - Database: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-23 11:13:26] [INFO] backend.app_v5 - Dataset: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-23 11:13:26] [INFO] backend.app_v5 - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-23 11:13:26] [INFO] backend.database - ✅ Database initialized successfully
+[2026-03-23 11:13:26] [INFO] backend.app_v5 - ✅ Database initialized
+[2026-03-23 11:14:57] [ERROR] backend.exceptions - Unhandled Exception: Exception | Message: parameter `request` must be an instance of starlette.requests.Request | Path: /api/chat
+Traceback (most recent call last):
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 324, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\slowapi\extension.py", line 725, in async_wrapper
+    raise Exception(
+        "parameter `request` must be an instance of starlette.requests.Request"
+    )
+Exception: parameter `request` must be an instance of starlette.requests.Request
+[2026-03-23 11:15:39] [INFO] backend.app_v5 - 🚀 Using Groq API Configuration
+[2026-03-23 11:15:39] [INFO] backend.app_v5 - 🚀 Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-23 11:15:39] [INFO] backend.app_v5 - Environment: development | Debug: True
+[2026-03-23 11:15:39] [INFO] backend.app_v5 - Database: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-23 11:15:39] [INFO] backend.app_v5 - Dataset: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-23 11:15:39] [INFO] backend.app_v5 - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-23 11:15:39] [INFO] backend.database - ✅ Database initialized successfully
+[2026-03-23 11:15:39] [INFO] backend.app_v5 - ✅ Database initialized
+[2026-03-23 11:16:13] [ERROR] backend.exceptions - Unhandled Exception: Exception | Message: parameter `request` must be an instance of starlette.requests.Request | Path: /api/chat
+Traceback (most recent call last):
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 324, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\slowapi\extension.py", line 725, in async_wrapper
+    raise Exception(
+        "parameter `request` must be an instance of starlette.requests.Request"
+    )
+Exception: parameter `request` must be an instance of starlette.requests.Request
+[2026-03-23 11:16:15] [ERROR] backend.exceptions - Unhandled Exception: Exception | Message: parameter `request` must be an instance of starlette.requests.Request | Path: /api/chat
+Traceback (most recent call last):
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 324, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\slowapi\extension.py", line 725, in async_wrapper
+    raise Exception(
+        "parameter `request` must be an instance of starlette.requests.Request"
+    )
+Exception: parameter `request` must be an instance of starlette.requests.Request
+[2026-03-23 11:16:46] [INFO] backend.app_v5 - 🚀 Using Groq API Configuration
+[2026-03-23 11:16:47] [INFO] backend.app_v5 - 🚀 Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-23 11:16:47] [INFO] backend.app_v5 - Environment: development | Debug: True
+[2026-03-23 11:16:47] [INFO] backend.app_v5 - Database: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-23 11:16:47] [INFO] backend.app_v5 - Dataset: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-23 11:16:47] [INFO] backend.app_v5 - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-23 11:16:47] [INFO] backend.database - ✅ Database initialized successfully
+[2026-03-23 11:16:47] [INFO] backend.app_v5 - ✅ Database initialized
+[2026-03-23 11:17:18] [ERROR] backend.exceptions - Unhandled Exception: Exception | Message: parameter `request` must be an instance of starlette.requests.Request | Path: /api/chat
+Traceback (most recent call last):
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\fastapi\routing.py", line 324, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasef\AppData\Roaming\Python\Python313\site-packages\slowapi\extension.py", line 725, in async_wrapper
+    raise Exception(
+        "parameter `request` must be an instance of starlette.requests.Request"
+    )
+Exception: parameter `request` must be an instance of starlette.requests.Request
+[2026-03-23 11:18:32] [INFO] backend.app_v5 - 🚀 Using Groq API Configuration
+[2026-03-23 11:18:33] [INFO] backend.app_v5 - 🚀 Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-23 11:18:33] [INFO] backend.app_v5 - Environment: development | Debug: True
+[2026-03-23 11:18:33] [INFO] backend.app_v5 - Database: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-23 11:18:33] [INFO] backend.app_v5 - Dataset: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-23 11:18:33] [INFO] backend.app_v5 - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-23 11:18:33] [INFO] backend.database - ✅ Database initialized successfully
+[2026-03-23 11:18:33] [INFO] backend.app_v5 - ✅ Database initialized
+[2026-03-23 11:19:14] [INFO] backend.database - ✅ Session created: 0a23279e-a83
+[2026-03-23 11:19:14] [INFO] backend.app_v5 - ✅ New session created: 0a23279e-a83
+[2026-03-23 11:19:14] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-23 11:19:20] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-03-23 11:19:20] [INFO] backend.app_v5 - ✅ LLM Response: مرحباً! في خدمتك، إزاي ممكن أساعدك؟
+[2026-03-23 11:19:20] [WARNING] backend.app_v5 - ⚠️ Low quality reply (score=0.25)
+[2026-03-23 11:19:22] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 7705.331087112427ms
+[2026-03-23 11:19:24] [INFO] backend.database - ✅ Session created: fdf16209-e09
+[2026-03-23 11:19:24] [INFO] backend.app_v5 - ✅ New session created: fdf16209-e09
+[2026-03-23 11:19:24] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-23 11:19:24] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-03-23 11:19:24] [INFO] backend.app_v5 - ✅ LLM Response: أنا آسف جداً عشان كدة، ممكن تساعدني أقدر أفهم أكتر عن مشكلتك؟ إزاي كان الخدمة بتيحلك؟ عشان أقدر أساع
+[2026-03-23 11:19:24] [WARNING] backend.app_v5 - ⚠️ Low quality reply (score=0.25)
+[2026-03-23 11:19:27] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2958.8887691497803ms
+[2026-03-23 11:19:29] [INFO] backend.database - ✅ Session created: 68ffb2b5-8c5
+[2026-03-23 11:19:29] [INFO] backend.app_v5 - ✅ New session created: 68ffb2b5-8c5
+[2026-03-23 11:19:29] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-23 11:19:29] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-03-23 11:19:29] [INFO] backend.app_v5 - ✅ LLM Response: أكيد يا باشا، ممكن تساعدني وتقوللي عن المشكلة اللي فيها عشان أقدر أساعدك؟
+[2026-03-23 11:19:29] [WARNING] backend.app_v5 - ⚠️ Low quality reply (score=0.25)
+[2026-03-23 11:19:32] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2830.782175064087ms
+[2026-03-23 11:23:59] [INFO] backend.database - ✅ Session created: 0ae9c5c8-d19
+[2026-03-23 11:23:59] [INFO] backend.app_v5 - ✅ New session created: 0ae9c5c8-d19
+[2026-03-23 11:23:59] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-23 11:23:59] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-03-23 11:23:59] [INFO] backend.app_v5 - ✅ LLM Response: أهلاً بيك! فين مشكلة حسابك؟ عايز مساعدة في إيه؟
+[2026-03-23 11:23:59] [WARNING] backend.app_v5 - ⚠️ Low quality reply (score=0.25)
+[2026-03-23 11:24:01] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2333.3022594451904ms
+[2026-03-23 11:24:03] [INFO] backend.database - ✅ Session created: 9e7a33c0-fdb
+[2026-03-23 11:24:03] [INFO] backend.app_v5 - ✅ New session created: 9e7a33c0-fdb
+[2026-03-23 11:24:03] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-23 11:24:04] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-03-23 11:24:04] [INFO] backend.app_v5 - ✅ LLM Response: أنا آسف جداً إنك متضايق من الخدمة. ممكن تساعدني أقدر أفهم أكتر عن مشكلتك؟ عشان أقدملك حل سريع وممكن.
+[2026-03-23 11:24:04] [WARNING] backend.app_v5 - ⚠️ Low quality reply (score=0.25)
+[2026-03-23 11:24:06] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2689.0244483947754ms
+[2026-03-23 11:24:08] [INFO] backend.database - ✅ Session created: 991b99c6-6dc
+[2026-03-23 11:24:08] [INFO] backend.app_v5 - ✅ New session created: 991b99c6-6dc
+[2026-03-23 11:24:08] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-23 11:24:08] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-03-23 11:24:08] [INFO] backend.app_v5 - ✅ LLM Response: علي الرحب والسعة، في خدمتك دايماً.
+[2026-03-23 11:24:08] [WARNING] backend.app_v5 - ⚠️ Low quality reply (score=0.25)
+[2026-03-23 11:24:10] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2014.937162399292ms
+[2026-03-23 11:25:19] [INFO] backend.database - ✅ Session created: d2814431-846
+[2026-03-23 11:25:19] [INFO] backend.app_v5 - ✅ New session created: d2814431-846
+[2026-03-23 11:25:19] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-23 11:25:20] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-03-23 11:25:20] [INFO] backend.app_v5 - ✅ LLM Response: مرحباً! اهلاً بيك! في إمكاني مساعدتك في حاجة؟
+[2026-03-23 11:25:20] [WARNING] backend.app_v5 - ⚠️ Low quality reply (score=0.25)
+[2026-03-23 11:25:22] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2536.1404418945312ms
+[2026-03-23 11:26:00] [INFO] backend.database - ✅ Session created: 8075edc4-19f
+[2026-03-23 11:26:00] [INFO] backend.app_v5 - ✅ New session created: 8075edc4-19f
+[2026-03-23 11:26:00] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-23 11:26:01] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-03-23 11:26:01] [INFO] backend.app_v5 - ✅ LLM Response: اهلاً وسهلاً! كيف اساعدك اليوم؟
+[2026-03-23 11:26:01] [WARNING] backend.app_v5 - ⚠️ Low quality reply (score=0.25)
+[2026-03-23 11:26:03] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2287.8990173339844ms
+[2026-03-23 11:26:12] [INFO] backend.database - ✅ Session created: 08099960-f4b
+[2026-03-23 11:26:12] [INFO] backend.app_v5 - ✅ New session created: 08099960-f4b
+[2026-03-23 11:26:12] [INFO] backend.app_v5 - 📝 Message processed: intent=question, priority=2, emotion=neutral
+[2026-03-23 11:26:12] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-03-23 11:26:12] [INFO] backend.app_v5 - ✅ LLM Response: كويس الحمد لله، وشنو حالك؟ في ايه ممكن اساعدك فيه؟
+[2026-03-23 11:26:12] [WARNING] backend.app_v5 - ⚠️ Low quality reply (score=0.25)
+[2026-03-23 11:26:14] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2307.5151443481445ms
+[2026-03-23 11:26:26] [INFO] backend.database - ✅ Session created: 69325c3e-249
+[2026-03-23 11:26:26] [INFO] backend.app_v5 - ✅ New session created: 69325c3e-249
+[2026-03-23 11:26:26] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-23 11:26:26] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-03-23 11:26:26] [INFO] backend.app_v5 - ✅ LLM Response: أهلاً بيك! إزاي أستطيع مساعدتك اليوم؟
+[2026-03-23 11:26:26] [WARNING] backend.app_v5 - ⚠️ Low quality reply (score=0.25)
+[2026-03-23 11:26:28] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2130.256175994873ms
+[2026-03-23 11:28:30] [INFO] __main__ - 🚀 Using Groq API Configuration
+[2026-03-23 11:28:31] [INFO] __main__ - 🚀 Starting Egyptian CS Bot Pro - V5.0 on http://0.0.0.0:8000
+[2026-03-23 11:28:31] [INFO] __main__ - 🚀 Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-23 11:28:31] [INFO] __main__ - Environment: development | Debug: True
+[2026-03-23 11:28:31] [INFO] __main__ - Database: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-23 11:28:31] [INFO] __main__ - Dataset: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-23 11:28:31] [INFO] __main__ - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-23 11:28:31] [INFO] backend.database - ✅ Database initialized successfully
+[2026-03-23 11:28:31] [INFO] __main__ - ✅ Database initialized
+[2026-03-23 11:29:59] [INFO] backend.database - ✅ Session created: f7198a07-d6f
+[2026-03-23 11:29:59] [INFO] backend.app_v5 - ✅ New session created: f7198a07-d6f
+[2026-03-23 11:29:59] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-23 11:29:59] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-03-23 11:29:59] [INFO] backend.app_v5 - ✅ LLM Response: أهلاً بيك! كيف أساعدك اليوم؟
+[2026-03-23 11:29:59] [WARNING] backend.app_v5 - ⚠️ Low quality reply (score=0.25)
+[2026-03-23 11:30:01] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2576.1616230010986ms
+[2026-03-23 11:30:11] [INFO] backend.database - ✅ Session created: 5d0e7320-0ef
+[2026-03-23 11:30:11] [INFO] backend.app_v5 - ✅ New session created: 5d0e7320-0ef
+[2026-03-23 11:30:11] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-23 11:30:11] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-03-23 11:30:11] [INFO] backend.app_v5 - ✅ LLM Response: الساعة دلوقتي... (أبحث عن الوقت) ...الساعة ٣ عصراً. أتمنى أن أساعدك في أي شيء تريده.
+[2026-03-23 11:30:11] [WARNING] backend.app_v5 - ⚠️ Low quality reply (score=0.25)
+[2026-03-23 11:30:13] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2732.5053215026855ms
+[2026-03-23 11:32:25] [INFO] __main__ - 🚀 Using Groq API Configuration
+[2026-03-23 11:32:26] [INFO] __main__ - 🚀 Starting Egyptian CS Bot Pro - V5.0 on http://0.0.0.0:8000
+[2026-03-23 11:32:26] [INFO] __main__ - 🚀 Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-23 11:32:26] [INFO] __main__ - Environment: development | Debug: True
+[2026-03-23 11:32:26] [INFO] __main__ - Database: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-23 11:32:26] [INFO] __main__ - Dataset: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-23 11:32:26] [INFO] __main__ - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-23 11:32:26] [INFO] backend.database - ✅ Database initialized successfully
+[2026-03-23 11:32:26] [INFO] __main__ - ✅ Database initialized
+[2026-03-23 11:32:26] [INFO] __main__ - 🛑 Server shutting down
+[2026-03-23 11:32:26] [INFO] backend.cache - All caches cleaned up
+[2026-03-24 09:41:49] [INFO] __main__ - 🚀 Using Groq API Configuration
+[2026-03-24 09:41:50] [INFO] __main__ - 🚀 Starting Egyptian CS Bot Pro - V5.0 on http://0.0.0.0:8000
+[2026-03-24 09:41:50] [INFO] __main__ - 🚀 Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-24 09:41:50] [INFO] __main__ - Environment: development | Debug: True
+[2026-03-24 09:41:50] [INFO] __main__ - Database: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-24 09:41:50] [INFO] __main__ - Dataset: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-24 09:41:50] [INFO] __main__ - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-24 09:41:50] [INFO] backend.database - ✅ Database initialized successfully
+[2026-03-24 09:41:50] [INFO] __main__ - ✅ Database initialized
+[2026-03-24 09:45:32] [INFO] backend.database - ✅ Session created: da46fdd8-5cf
+[2026-03-24 09:45:32] [INFO] __main__ - ✅ New session created: da46fdd8-5cf
+[2026-03-24 09:45:32] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 09:45:35] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 09:45:35] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 09:45:35] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 09:45:39] [INFO] backend.database - ✅ Session created: e5684e56-01b
+[2026-03-24 09:45:39] [INFO] __main__ - ✅ New session created: e5684e56-01b
+[2026-03-24 09:45:39] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 09:45:39] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 09:45:39] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 09:45:39] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 09:45:41] [INFO] backend.database - ✅ Session created: 7aff6435-80c
+[2026-03-24 09:45:41] [INFO] __main__ - ✅ New session created: 7aff6435-80c
+[2026-03-24 09:45:41] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 09:45:42] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 09:45:42] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 09:45:42] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 09:45:47] [INFO] backend.database - ✅ Session created: ade2ba03-6e1
+[2026-03-24 09:45:47] [INFO] __main__ - ✅ New session created: ade2ba03-6e1
+[2026-03-24 09:45:47] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 09:45:47] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 09:45:47] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 09:45:47] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 09:46:55] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 09:46:55] [WARNING] __main__ - ⚠️ OpenAI STT failed, trying Google: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 09:46:55] [ERROR] __main__ - ❌ Google STT Failed: Audio file could not be read as PCM WAV, AIFF/AIFF-C, or Native FLAC; check if file is corrupted or in another format
+[2026-03-24 09:46:55] [ERROR] __main__ - Audio error: فشل في تحويل الصوت. حاول تحدث بوضوح أكبر
+[2026-03-24 09:46:55] [ERROR] backend.exceptions - BotException: AUDIO_ERROR | Message: فشل في تحويل الصوت. حاول تحدث بوضوح أكبر | Path: /api/transcribe | Details: Audio processing failed
+[2026-03-24 10:31:40] [INFO] backend.database - ✅ Session created: d59de21b-c53
+[2026-03-24 10:31:40] [INFO] __main__ - ✅ New session created: d59de21b-c53
+[2026-03-24 10:31:40] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 10:31:41] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:31:41] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:31:41] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:31:45] [INFO] backend.database - ✅ Session created: 308deba3-947
+[2026-03-24 10:31:45] [INFO] __main__ - ✅ New session created: 308deba3-947
+[2026-03-24 10:31:45] [INFO] __main__ - 📝 Message processed: intent=question, priority=2, emotion=neutral
+[2026-03-24 10:31:45] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:31:45] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:31:45] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:32:32] [INFO] backend.database - ✅ Session created: 3c8d75ee-52c
+[2026-03-24 10:32:32] [INFO] __main__ - ✅ New session created: 3c8d75ee-52c
+[2026-03-24 10:32:32] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 10:32:32] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:32:32] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:32:32] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:35:03] [INFO] backend.database - ✅ Session created: c21e3c6a-fd6
+[2026-03-24 10:35:03] [INFO] __main__ - ✅ New session created: c21e3c6a-fd6
+[2026-03-24 10:35:03] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 10:35:03] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:35:03] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:35:03] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:35:08] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:35:08] [WARNING] __main__ - ⚠️ OpenAI STT failed, trying Google: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:35:08] [ERROR] __main__ - ❌ Google STT Failed: Audio file could not be read as PCM WAV, AIFF/AIFF-C, or Native FLAC; check if file is corrupted or in another format
+[2026-03-24 10:35:08] [ERROR] __main__ - Audio error: فشل في تحويل الصوت. حاول تحدث بوضوح أكبر
+[2026-03-24 10:35:08] [ERROR] backend.exceptions - BotException: AUDIO_ERROR | Message: فشل في تحويل الصوت. حاول تحدث بوضوح أكبر | Path: /api/transcribe | Details: Audio processing failed
+[2026-03-24 10:42:17] [INFO] backend.app_v5 - ⚠️ Anthropic API not configured - using fallback
+[2026-03-24 10:42:17] [INFO] backend.app_v5 - 🚀 Using Groq API (Fallback)
+[2026-03-24 10:42:30] [INFO] backend.app_v5 - ⚠️ Anthropic API not configured - using fallback
+[2026-03-24 10:42:30] [INFO] backend.app_v5 - 🚀 Using Groq API (Fallback)
+[2026-03-24 10:42:31] [INFO] backend.app_v5 - 🚀 Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-24 10:42:31] [INFO] backend.app_v5 - Environment: development | Debug: True
+[2026-03-24 10:42:31] [INFO] backend.app_v5 - Database: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-24 10:42:31] [INFO] backend.app_v5 - Dataset: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-24 10:42:31] [INFO] backend.app_v5 - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-24 10:42:31] [INFO] backend.database - ✅ Database initialized successfully
+[2026-03-24 10:42:31] [INFO] backend.app_v5 - ✅ Database initialized
+[2026-03-24 10:43:46] [INFO] backend.app_v5 - Anthropic API not configured - using fallback
+[2026-03-24 10:43:46] [INFO] backend.app_v5 - Using Groq API (Fallback)
+[2026-03-24 10:43:47] [INFO] backend.app_v5 - Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-24 10:43:47] [INFO] backend.app_v5 - Environment: development | Debug: True
+[2026-03-24 10:43:47] [INFO] backend.app_v5 - Database: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-24 10:43:47] [INFO] backend.app_v5 - Dataset: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-24 10:43:47] [INFO] backend.app_v5 - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-24 10:43:47] [INFO] backend.database - ✅ Database initialized successfully
+[2026-03-24 10:43:47] [INFO] backend.app_v5 - Database initialized
+[2026-03-24 10:43:48] [INFO] backend.database - ✅ Session created: b7af1b71-175
+[2026-03-24 10:43:48] [INFO] backend.app_v5 - ✅ New session created: b7af1b71-175
+[2026-03-24 10:43:48] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 10:43:49] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:43:49] [ERROR] backend.app_v5 - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:43:49] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: LLM
+[2026-03-24 10:45:08] [INFO] backend.app_v5 - Anthropic API not configured - using fallback
+[2026-03-24 10:45:08] [INFO] backend.app_v5 - Using Groq API (Fallback)
+[2026-03-24 10:45:09] [INFO] backend.app_v5 - Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-24 10:45:09] [INFO] backend.app_v5 - Environment: development | Debug: True
+[2026-03-24 10:45:09] [INFO] backend.app_v5 - Database: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-24 10:45:09] [INFO] backend.app_v5 - Dataset: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-24 10:45:09] [INFO] backend.app_v5 - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-24 10:45:09] [INFO] backend.database - Database initialized successfully
+[2026-03-24 10:45:09] [INFO] backend.app_v5 - Database initialized
+[2026-03-24 10:45:09] [INFO] backend.database - Session created: 6280cb9c-14e
+[2026-03-24 10:45:09] [INFO] backend.app_v5 - New session created: 6280cb9c-14e
+[2026-03-24 10:45:09] [INFO] backend.app_v5 - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 10:45:10] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:45:10] [ERROR] backend.app_v5 - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:45:10] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: LLM
+[2026-03-24 10:49:14] [INFO] backend.database - ✅ Session created: e6352904-672
+[2026-03-24 10:49:14] [INFO] __main__ - ✅ New session created: e6352904-672
+[2026-03-24 10:49:14] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 10:49:14] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:49:14] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:49:14] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:49:17] [INFO] backend.database - ✅ Session created: 369a1239-7af
+[2026-03-24 10:49:17] [INFO] __main__ - ✅ New session created: 369a1239-7af
+[2026-03-24 10:49:17] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 10:49:17] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:49:17] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:49:17] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:53:24] [INFO] backend.database - ✅ Session created: 09ca3b4a-dfc
+[2026-03-24 10:53:24] [INFO] __main__ - ✅ New session created: 09ca3b4a-dfc
+[2026-03-24 10:53:24] [INFO] __main__ - 📝 Message processed: intent=request, priority=2, emotion=neutral
+[2026-03-24 10:53:24] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:53:24] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:53:24] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:53:47] [INFO] backend.app_v5 - Anthropic API not configured - using fallback
+[2026-03-24 10:53:47] [INFO] backend.app_v5 - Using Groq API (Fallback)
+[2026-03-24 10:53:48] [INFO] backend.app_v5 - Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-24 10:53:48] [INFO] backend.app_v5 - Environment: development | Debug: True
+[2026-03-24 10:53:48] [INFO] backend.app_v5 - Database: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-24 10:53:48] [INFO] backend.app_v5 - Dataset: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-24 10:53:48] [INFO] backend.app_v5 - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-24 10:53:48] [INFO] backend.database - Database initialized successfully
+[2026-03-24 10:53:48] [INFO] backend.app_v5 - Database initialized
+[2026-03-24 10:53:49] [INFO] backend.database - Session created: c35a567c-b0d
+[2026-03-24 10:53:49] [INFO] backend.app_v5 - New session created: c35a567c-b0d
+[2026-03-24 10:53:49] [INFO] backend.app_v5 - Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 10:53:51] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:53:51] [ERROR] backend.app_v5 - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:53:51] [ERROR] backend.app_v5 - Handled BotException in chat: API_ERROR الخدمة بطيئة حالياً، حاول لاحقاً
+[2026-03-24 10:54:23] [INFO] backend.app_v5 - Anthropic API not configured - using fallback
+[2026-03-24 10:54:23] [INFO] backend.app_v5 - Using Groq API (Fallback)
+[2026-03-24 10:54:24] [INFO] backend.app_v5 - Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-24 10:54:24] [INFO] backend.app_v5 - Environment: development | Debug: True
+[2026-03-24 10:54:24] [INFO] backend.app_v5 - Database: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-24 10:54:24] [INFO] backend.app_v5 - Dataset: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-24 10:54:24] [INFO] backend.app_v5 - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-24 10:54:24] [INFO] backend.database - Database initialized successfully
+[2026-03-24 10:54:24] [INFO] backend.app_v5 - Database initialized
+[2026-03-24 10:54:24] [INFO] backend.database - Session created: 003f2b79-fbe
+[2026-03-24 10:54:24] [INFO] backend.app_v5 - New session created: 003f2b79-fbe
+[2026-03-24 10:54:24] [INFO] backend.app_v5 - Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 10:54:25] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:54:25] [ERROR] backend.app_v5 - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:54:25] [ERROR] backend.app_v5 - Handled BotException in chat: API_ERROR الخدمة بطيئة حالياً، حاول لاحقاً
+[2026-03-24 10:56:19] [INFO] backend.database - ✅ Session created: 1575094a-281
+[2026-03-24 10:56:19] [INFO] __main__ - ✅ New session created: 1575094a-281
+[2026-03-24 10:56:19] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 10:56:19] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:56:19] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:56:19] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:59:00] [INFO] backend.database - ✅ Session created: b44c9369-aa5
+[2026-03-24 10:59:00] [INFO] __main__ - ✅ New session created: b44c9369-aa5
+[2026-03-24 10:59:00] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 10:59:00] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:59:00] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:59:00] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 10:59:26] [INFO] backend.database - ✅ Session created: f60a88c5-60f
+[2026-03-24 10:59:26] [INFO] __main__ - ✅ New session created: f60a88c5-60f
+[2026-03-24 10:59:26] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 10:59:26] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 10:59:26] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 10:59:26] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 11:04:08] [INFO] backend.database - ✅ Session created: fe2c21db-4f6
+[2026-03-24 11:04:08] [INFO] __main__ - ✅ New session created: fe2c21db-4f6
+[2026-03-24 11:04:08] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 11:04:09] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 11:04:09] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 11:04:09] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 11:05:44] [INFO] backend.app_v5 - Anthropic API not configured - using fallback
+[2026-03-24 11:05:44] [WARNING] backend.app_v5 - No GROQ_API_KEY found - will use demo mode with dataset fallback
+[2026-03-24 11:05:44] [INFO] backend.app_v5 - Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-24 11:05:44] [INFO] backend.app_v5 - Environment: development | Debug: True
+[2026-03-24 11:05:44] [INFO] backend.app_v5 - Database: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-24 11:05:44] [INFO] backend.app_v5 - Dataset: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-24 11:05:44] [INFO] backend.app_v5 - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-24 11:05:44] [INFO] backend.database - Database initialized successfully
+[2026-03-24 11:05:44] [INFO] backend.app_v5 - Database initialized
+[2026-03-24 11:05:45] [INFO] backend.database - Session created: a9b124db-389
+[2026-03-24 11:05:45] [INFO] backend.app_v5 - New session created: a9b124db-389
+[2026-03-24 11:05:45] [INFO] backend.app_v5 - Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 11:05:45] [INFO] backend.app_v5 - Smart reply generated (intent=general, dialect=cairene)
+[2026-03-24 11:05:45] [WARNING] backend.app_v5 - Low quality reply (score=0.20)
+[2026-03-24 11:05:47] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2247.2174167633057ms
+[2026-03-24 11:08:29] [INFO] backend.app_v5 - Anthropic API not configured - using fallback
+[2026-03-24 11:08:29] [WARNING] backend.app_v5 - No GROQ_API_KEY found - will use demo mode with dataset fallback
+[2026-03-24 11:08:29] [INFO] backend.app_v5 - Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-24 11:08:29] [INFO] backend.app_v5 - Environment: development | Debug: True
+[2026-03-24 11:08:29] [INFO] backend.app_v5 - Database: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-24 11:08:29] [INFO] backend.app_v5 - Dataset: c:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-24 11:08:29] [INFO] backend.app_v5 - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-24 11:08:29] [INFO] backend.database - Database initialized successfully
+[2026-03-24 11:08:29] [INFO] backend.app_v5 - Database initialized
+[2026-03-24 11:08:30] [INFO] backend.database - Session created: a109b09d-9b1
+[2026-03-24 11:08:30] [INFO] backend.app_v5 - New session created: a109b09d-9b1
+[2026-03-24 11:08:30] [INFO] backend.app_v5 - Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 11:08:30] [INFO] backend.app_v5 - Smart reply generated (intent=general, dialect=cairene)
+[2026-03-24 11:08:30] [WARNING] backend.app_v5 - Low quality reply (score=0.20)
+[2026-03-24 11:08:32] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2381.808042526245ms
+[2026-03-24 11:10:01] [INFO] backend.database - ✅ Session created: c9e12624-947
+[2026-03-24 11:10:01] [INFO] __main__ - ✅ New session created: c9e12624-947
+[2026-03-24 11:10:01] [INFO] __main__ - 📝 Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 11:10:02] [INFO] httpx - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+[2026-03-24 11:10:02] [ERROR] __main__ - LLM error: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+[2026-03-24 11:10:02] [ERROR] backend.exceptions - BotException: API_ERROR | Message: الخدمة بطيئة حالياً، حاول لاحقاً | Path: /api/chat | Details: API: OpenAI
+[2026-03-24 15:08:19] [INFO] __main__ - Anthropic API not configured - using fallback
+[2026-03-24 15:08:19] [WARNING] __main__ - No GROQ_API_KEY found - will use demo mode with dataset fallback
+[2026-03-24 15:08:19] [INFO] __main__ - Starting Egyptian CS Bot Pro - V5.0 on http://0.0.0.0:8000
+[2026-03-24 15:08:19] [INFO] __main__ - Server starting up - Egyptian CS Bot Pro - V5.0
+[2026-03-24 15:08:19] [INFO] __main__ - Environment: development | Debug: True
+[2026-03-24 15:08:19] [INFO] __main__ - Database: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\data\chat_bot.db
+[2026-03-24 15:08:19] [INFO] __main__ - Dataset: C:\Users\Nasef\Desktop\egyptian-cs-bot-project\dataset\egyptian_cs_dataset.json
+[2026-03-24 15:08:19] [INFO] __main__ - Allowed Origins: ['http://localhost:3000', 'http://localhost:8000', 'http://localhost:8001']
+[2026-03-24 15:08:19] [INFO] backend.database - Database initialized successfully
+[2026-03-24 15:08:19] [INFO] __main__ - Database initialized
+[2026-03-24 15:08:34] [INFO] backend.database - Session created: 9db70944-c10
+[2026-03-24 15:08:34] [INFO] __main__ - New session created: 9db70944-c10
+[2026-03-24 15:08:34] [INFO] __main__ - Message processed: intent=general, priority=2, emotion=neutral
+[2026-03-24 15:08:34] [INFO] __main__ - Smart reply generated (intent=general, dialect=cairene)
+[2026-03-24 15:08:34] [WARNING] __main__ - Low quality reply (score=0.20)
+[2026-03-24 15:08:37] [INFO] api_requests - POST /api/chat - Status: 200 - Duration: 2732.717990875244ms
+[2026-03-24 15:08:58] [ERROR] __main__ - Transcribe error: name 'client' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Nasef\Desktop\egyptian-cs-bot-project\backend\app_v5.py", line 336, in transcribe_audio
+    if client and OPENAI_API_KEY:
+       ^^^^^^
+NameError: name 'client' is not defined
+[2026-03-24 15:08:58] [ERROR] backend.exceptions - BotException: TRANSCRIBE_ERROR | Message: فشل في معالجة الملف الصوتي | Path: /api/transcribe | Details: 
+[2026-03-24 15:09:00] [ERROR] __main__ - Transcribe error: name 'client' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Nasef\Desktop\egyptian-cs-bot-project\backend\app_v5.py", line 336, in transcribe_audio
+    if client and OPENAI_API_KEY:
+       ^^^^^^
+NameError: name 'client' is not defined
